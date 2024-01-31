@@ -20,18 +20,16 @@
 
 FROM        node:alpine
 
-LABEL       author="Dan Wahlin"
+LABEL       author="Bansikah"
 
-ARG         PACKAGES=nano
-
-ENV         TERM xterm
-RUN         apk update && apk add $PACKAGES
+ENV         NODE_ENV=production
+ENV         PORT=3000
 
 WORKDIR     /var/www
 COPY        package*.json ./
 RUN         npm install
 
 COPY        . ./
-EXPOSE      3000
+EXPOSE      $PORT
 
 ENTRYPOINT  ["npm", "start"]
